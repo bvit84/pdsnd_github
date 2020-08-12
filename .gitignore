@@ -1,0 +1,2 @@
+# ignores any csv file to be commited
+*.csv
