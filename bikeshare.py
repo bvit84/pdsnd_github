@@ -3,7 +3,7 @@ import random
 import pandas as pd
 import numpy as np
 
-CITY_DATA = { 'chicago': 'chicago.csv',
+DATA_cities = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
 
@@ -60,7 +60,7 @@ def get_filters():
     # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     city = check_validity(
         "Select Chicago, New York city or Washington:"
-        , list((CITY_DATA).keys()))
+        , list((DATA_cities).keys()))
 
     # TO DO: get user input for month (all, january, february, ... , june)
     month = check_validity(
@@ -88,7 +88,7 @@ def load_data(city, month, day):
         df - Pandas DataFrame containing city data filtered by month and day
     """
     # load data file into a dataframe
-    df = pd.read_csv(CITY_DATA[city])
+    df = pd.read_csv(DATA_cities[city])
 
     # convert the Start Time column to datetime
     df['Start Time'] = pd.to_datetime(df['Start Time'])
