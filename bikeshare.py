@@ -43,8 +43,13 @@ def check_validity(choice_list, valid_options):
             print_slow(f"You opted random selection: {choice}")
             return choice
         else:
-            print_slow("Please try again.")
-            input_string = input().lower()
+            input_string = try_again()
+
+
+# refactored method
+def try_again():
+    print_slow("Please try again.")
+    return input().lower()
 
 
 def get_filters():
