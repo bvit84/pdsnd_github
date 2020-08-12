@@ -1,16 +1,15 @@
 
 <!-- Full readme standard here: https://github.com/RichardLitt/standard-readme -->
-# Python BikeShare Repository 
+# Python BikeShare Repository Project
 
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
-This Repo is the Udacity class project for Version Control using my previous Python BikeShare data.
+This Repo is the Udacity class project for Version Control using my previous Python BikeShare project.
 
 ## Table of Contents
 
 - [Background](#background)
 - [Date created](#date-created)
-- [Install](#install)
 - [Usage](#usage)
 - [Maintainer](#maintainer)
 - [Thanks](#thanks)
@@ -19,19 +18,15 @@ This Repo is the Udacity class project for Version Control using my previous Pyt
 
 ## Background
 
-Demonstration of: using local git repository and GitHub repository, forking a repository, working on files, staging files and commiting them to GitHub. Also demonstration of how to hide files using .gitignore.
+This project is a demonstration of using local git repository and GitHub repository, forking a repository, working on files, staging files and commiting them to GitHub. Also it is a demonstration of how to hide files using .gitignore.
 
 ## Date created
 
 08/12/2020.
 
-## Install
-
-No need to be installed.
-
 ## Usage
 
-Repository does not contain .csv files due to the their large size.
+Repository does not contain .csv files due to their large size.
 
 ## Maintainer
 
@@ -39,7 +34,7 @@ Repository does not contain .csv files due to the their large size.
 
 ## Thanks
 
-Git Repo creation lesson2 in Intro to programming Nanodegree from [@Udacity](https://udacity.com).
+Git Repo creation lesson 2 in Intro to programming Nanodegree from [@Udacity](https://udacity.com).
 
 ## Contributing
 
