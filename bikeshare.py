@@ -3,13 +3,15 @@ import random
 import pandas as pd
 import numpy as np
 
-CITY_DATA = { 'chicago': 'chicago.csv',
-              'new york city': 'new_york_city.csv',
-              'washington': 'washington.csv' }
+CITY_DATA = {'chicago': 'chicago.csv',
+             'new york city': 'new_york_city.csv',
+             'washington': 'washington.csv'}
 
 DATA_year = ['all', 'january', 'february', 'march', 'april', 'may', 'june']
 
-WEEK = ['all', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday','sunday']
+WEEK = ['all', 'monday', 'tuesday', 'wednesday',
+        'thursday', 'friday', 'saturday', 'sunday']
+
 
 # one time message about program
 def intro():
@@ -53,25 +55,25 @@ def get_filters():
 
     Returns:
         (str) city - name of the city to analyze
-        (str) month - name of the month to filter by, or "all" to apply no month filter
-        (str) day - name of the day of week to filter by, or "all" to apply no day filter
+        (str) month - name of the month to filter by, or
+        "all" to apply no month filter
+        (str) day - name of the day of week to filter by, or
+        "all" to apply no day filter
     """
     print('\nLet\'s explore some US bikeshare data!')
     # TO DO: get user input for city (chicago, new york city, washington).
-    # HINT: Use a while loop to handle invalid inputs.
+    # HINT: Use a while loop to handle invalid inputs
     city = check_validity(
-        "Select Chicago, New York city or Washington:"
-        , list((CITY_DATA).keys()))
+        "Select Chicago, New York city or Washington:",
+        list((CITY_DATA).keys()))
 
     # TO DO: get user input for month (all, january, february, ... , june)
     month = check_validity(
-        "Select month (January - June) or all:"
-        , DATA_year)
+        "Select month (January - June) or all:", DATA_year)
 
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
     day = check_validity(
-        "Select day (Monday - Sunday) or all:"
-        , WEEK)
+        "Select day (Monday - Sunday) or all:", WEEK)
 
     print('-'*40)
     return city, month, day
@@ -79,12 +81,15 @@ def get_filters():
 
 def load_data(city, month, day):
     """
-    Loads data for the specified city and filters by month and day if applicable.
+    Loads data for the specified city and filters
+    by month and day if applicable.
 
     Args:
         (str) city - name of the city to analyze
-        (str) month - name of the month to filter by, or "all" to apply no month filter
-        (str) day - name of the day of week to filter by, or "all" to apply no day filter
+        (str) month - name of the month to filter by, or
+        "all" to apply no month filter
+        (str) day - name of the day of week to filter by, or
+        "all" to apply no day filter
     Returns:
         df - Pandas DataFrame containing city data filtered by month and day
     """
@@ -131,7 +136,7 @@ def time_stats(df):
     # TO DO: display the most common start hour
     popular_hour = df['hour'].mode()[0]
     print('Most common start hour:', popular_hour)
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -150,7 +155,8 @@ def station_stats(df):
     popular_end_station = df['End Station'].mode()[0]
     print('Most commonly used end station:\n', popular_end_station)
 
-    # TO DO: display most frequent combination of start station and end station trip
+    # TO DO: display most frequent combination of
+    # start station and end station trip
     df['route'] = df['Start Station'] + ' - ' + df['End Station']
     popular_route = df['route'].mode()[0]
     print('Most frequent route:\n', popular_route)
@@ -206,11 +212,10 @@ def end():
     else:
         print_slow("Goodbye!")
 
-        
+
 def body():
     city, month, day = get_filters()
     df = load_data(city, month, day)
-    print(df)
     time_stats(df)
     station_stats(df)
     trip_duration_stats(df)
@@ -220,8 +225,8 @@ def body():
 
 def main():
     intro()
-    body()    
+    body()
 
 
 if __name__ == "__main__":
-	main()
+    main()
