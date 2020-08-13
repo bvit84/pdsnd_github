@@ -3,9 +3,9 @@ import random
 import pandas as pd
 import numpy as np
 
-CITY_DATA = {'chicago': 'chicago.csv',
-             'new york city': 'new_york_city.csv',
-             'washington': 'washington.csv'}
+DATA_cities = { 'chicago': 'chicago.csv',
+              'new york city': 'new_york_city.csv',
+              'washington': 'washington.csv' }
 
 DATA_year = ['all', 'january', 'february', 'march', 'april', 'may', 'june']
 
@@ -45,8 +45,13 @@ def check_validity(choice_list, valid_options):
             print_slow(f"You opted random selection: {choice}")
             return choice
         else:
-            print_slow("Please try again.")
-            input_string = input().lower()
+            input_string = try_again()
+
+
+# refactored method
+def try_again():
+    print_slow("Please try again.")
+    return input().lower()
 
 
 def get_filters():
@@ -64,8 +69,8 @@ def get_filters():
     # TO DO: get user input for city (chicago, new york city, washington).
     # HINT: Use a while loop to handle invalid inputs
     city = check_validity(
-        "Select Chicago, New York city or Washington:",
-        list((CITY_DATA).keys()))
+        "Select Chicago, New York city or Washington:"
+        , list((DATA_cities).keys()))
 
     # TO DO: get user input for month (all, january, february, ... , june)
     month = check_validity(
@@ -94,7 +99,7 @@ def load_data(city, month, day):
         df - Pandas DataFrame containing city data filtered by month and day
     """
     # load data file into a dataframe
-    df = pd.read_csv(CITY_DATA[city])
+    df = pd.read_csv(DATA_cities[city])
 
     # convert the Start Time column to datetime
     df['Start Time'] = pd.to_datetime(df['Start Time'])
