@@ -3,9 +3,9 @@ import random
 import pandas as pd
 import numpy as np
 
-DATA_cities = { 'chicago': 'chicago.csv',
-              'new york city': 'new_york_city.csv',
-              'washington': 'washington.csv' }
+CITY_DATA = {'chicago': 'chicago.csv',
+             'new york city': 'new_york_city.csv',
+             'washington': 'washington.csv'}
 
 DATA_year = ['all', 'january', 'february', 'march', 'april', 'may', 'june']
 
@@ -45,13 +45,8 @@ def check_validity(choice_list, valid_options):
             print_slow(f"You opted random selection: {choice}")
             return choice
         else:
-            input_string = try_again()
-
-
-# refactored method
-def try_again():
-    print_slow("Please try again.")
-    return input().lower()
+            print_slow("Please try again.")
+            input_string = input().lower()
 
 
 def get_filters():
@@ -69,8 +64,8 @@ def get_filters():
     # TO DO: get user input for city (chicago, new york city, washington).
     # HINT: Use a while loop to handle invalid inputs
     city = check_validity(
-        "Select Chicago, New York city or Washington:"
-        , list((DATA_cities).keys()))
+        "Select Chicago, New York city or Washington:",
+        list((CITY_DATA).keys()))
 
     # TO DO: get user input for month (all, january, february, ... , june)
     month = check_validity(
@@ -99,7 +94,7 @@ def load_data(city, month, day):
         df - Pandas DataFrame containing city data filtered by month and day
     """
     # load data file into a dataframe
-    df = pd.read_csv(DATA_cities[city])
+    df = pd.read_csv(CITY_DATA[city])
 
     # convert the Start Time column to datetime
     df['Start Time'] = pd.to_datetime(df['Start Time'])
@@ -209,9 +204,24 @@ def user_stats(df):
     print('-'*40)
 
 
+# row stats displayed in 5 rows
+def row_stats(df):
+    view_data = check_validity(
+        '\nWould you like to view 5 rows of individual trip data? (y/n): '
+        , ['y', 'n'])
+    start_loc = 0
+    while (view_data == 'y'):
+        print(df.iloc[start_loc:start_loc+5])
+        start_loc += 5
+        view_display = check_validity('\nDo you wish to continue? (y/n): '
+                                      , ['y', 'n'])
+        if view_display == 'n':
+            break    
+
+
 # option for game to start again or end
 def end():
-    if check_validity("\nWould you like to restart? Enter yes or no.\n",
+    if check_validity("\nWould you like to restart? (y/n).\n",
                       ["y", "n"]) == "y":
         body()
     else:
@@ -225,6 +235,9 @@ def body():
     station_stats(df)
     trip_duration_stats(df)
     user_stats(df)
+    row_stats(df)
+    print('-'*40)
+    print_slow("\nEnd of statistics\n")
     end()
 
 
